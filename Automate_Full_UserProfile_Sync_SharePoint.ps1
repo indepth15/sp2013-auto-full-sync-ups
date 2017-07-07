@@ -52,3 +52,10 @@ $configManager = New-Object Microsoft.Office.Server.UserProfiles.UserProfileConf
  {
     Write-Host "Already Synchronizing"
  }
+
+ while ($syncSvc.Status -eq "Provisioning")
+{
+    $syncSvc = Get-SPServiceInstance |?{$_.id -eq "6c905cfd-9808-4e67-93a6-dae3f877bf9a"}
+    Write-Host $syncSvc.Status
+    sleep 3
+}
